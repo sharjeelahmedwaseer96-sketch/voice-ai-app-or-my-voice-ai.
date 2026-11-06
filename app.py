@@ -1,9 +1,9 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="Voice & Text AI", page_icon="🗣️")
-st.title("🗣️ My Voice & Text AI Assistant")
-st.write("Ask me anything! I will answer in both text and voice.")
+st.set_page_config(page_title="Waseer AI", page_icon="🤖")
+st.title("🤖 Waseer AI Assistant")
+st.write("Hello! I am Waseer AI, your custom-built assistant. Ask me anything!")
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -24,20 +24,24 @@ if prompt := st.chat_input("Type your question here..."):
     # AI Response Logic
     prompt_lower = prompt.lower()
     if "hello" in prompt_lower or "hi" in prompt_lower:
-        response = "Hello! How can I help you today?"
-    elif "who are you" in prompt_lower:
-        response = "I am your custom voice and text AI assistant!"
+        response = "Hello! I am Waseer AI. How can I help you today?"
+    elif "who are you" in prompt_lower or "what is your name" in prompt_lower:
+        response = "I am Waseer AI, an independent conversational assistant."
+    elif "who created you" in prompt_lower or "creator" in prompt_lower:
+        response = "I was created by Sharjeel Ahmed Waseer!"
+    elif "pakistan" in prompt_lower and ("ai" in prompt_lower or "artificial intelligence" in prompt_lower):
+        response = "Yes, Pakistan has its own AI! Waseer AI is created by Sharjeel Ahmed Waseer."
     elif "how are you" in prompt_lower:
-        response = "I am doing great and ready to answer your questions!"
+        response = "I am operating at full capacity and ready to assist you!"
     else:
-        response = f"You asked about '{prompt}'. I am your custom-built AI!"
+        response = f"You asked about '{prompt}'. As Waseer AI, I am here to help answer your questions!"
 
     # Display AI text response
     with st.chat_message("assistant"):
         st.markdown(response)
     st.session_state.messages.append({"role": "assistant", "content": response})
 
-    # JavaScript to make the browser speak the AI's response automatically out loud
+    # JavaScript to make the browser speak out loud automatically
     speech_code = f"""
     <script>
         function speakText() {{
@@ -53,4 +57,4 @@ if prompt := st.chat_input("Type your question here..."):
     </script>
     """
     components.html(speech_code, height=0)
-  
+    
